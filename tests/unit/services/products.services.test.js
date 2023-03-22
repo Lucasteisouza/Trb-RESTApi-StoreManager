@@ -20,7 +20,7 @@ describe('testa a camada services da rota products', () => {
     const result = await productServices.getProductById(1);
 
     expect(result.type).to.be.equal(null);
-    expect(result.message).to.deep.equal(singleProductMock);
+    expect(result.message).to.deep.equal(singleProductMock[0]);
   });
 
   it("retorna um erro se o id nao for um numero", async () => {

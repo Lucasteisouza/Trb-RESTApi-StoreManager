@@ -52,7 +52,7 @@ describe('testa a camada controller da rota products', () => {
     
     await productsControllers.getProductById(req, res);
 
-    expect(res.status).to.have.been.calledWith(400);
+    expect(res.status).to.have.been.calledWith(422);
     expect (res.json).to.have.been.calledWith({ message: '"id" must be a number' });
   });
 
@@ -70,5 +70,9 @@ describe('testa a camada controller da rota products', () => {
     expect(res.status).to.have.been.calledWith(404);
     expect (res.json).to.have.been.calledWith({ message: 'Product not found' });
   });
+
+   afterEach(function () {
+     sinon.restore();
+   });
 });
 
