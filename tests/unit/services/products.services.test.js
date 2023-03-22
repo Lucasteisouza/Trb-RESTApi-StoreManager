@@ -2,29 +2,29 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const { productServices } = require('../../../src/services');
 const { productModels } = require("../../../src/models");
-const { products, singleProduct } = require("../models/product.models.mocks");
+const { productsMock, singleProductMock } = require("../product.models.mocks");
 
 describe('testa a camada services da rota products', () => {
   it('retorna todos os produtos', async () => {
-    sinon.stub(productModels, 'getAll').resolves(products);
+    sinon.stub(productModels, "getAll").resolves(productsMock);
 
     const result = await productServices.getAll();
 
     expect(result.type).to.be.equal(null);
-    expect(result.message).to.deep.equal(products);
+    expect(result.message).to.deep.equal(productsMock);
   });
 
   it('retorna um produto pelo id', async () => {
-    sinon.stub(productModels, "getProductById").resolves(singleProduct);
+    sinon.stub(productModels, "getProductById").resolves(singleProductMock);
 
     const result = await productServices.getProductById(1);
 
     expect(result.type).to.be.equal(null);
-    expect(result.message).to.deep.equal(singleProduct);
+    expect(result.message).to.deep.equal(singleProductMock);
   });
 
   it("retorna um erro se o id nao for um numero", async () => {
-    sinon.stub(productModels, "getProductById").resolves(singleProduct);
+    sinon.stub(productModels, "getProductById").resolves(singleProductMock);
 
     const result = await productServices.getProductById('a');
 
@@ -33,7 +33,7 @@ describe('testa a camada services da rota products', () => {
   });
 
   it("retorna um erro se o produto nao for encontrado", async () => {
-    sinon.stub(productModels, "getProductById").resolves(null);
+    sinon.stub(productModels, "getProductById").resolves([]);
 
     const result = await productServices.getProductById(1);
 
