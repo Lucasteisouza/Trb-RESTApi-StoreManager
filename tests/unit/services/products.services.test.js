@@ -41,6 +41,26 @@ describe('testa a camada services da rota products', () => {
     expect(result.message).to.deep.equal('Product not found');
   });
 
+  it("adiciona um produto", async () => {
+    sinon.stub(productModels, "createProduct").resolves(69);
+    sinon.stub(productModels, "getProductById").resolves([{ id: 69, name: 'produto X' }]);
+
+    const result = await productServices.createProduct('produto X');
+
+    expect(result.type).to.be.equal(null);
+    expect(result.message).to.deep.equal({ id: 69, name: 'produto X' });
+  });
+
+  it("retorna um erro se o nome do produto nao for uma string valida", async () => {
+    sinon.stub(productModels, "createProduct").resolves(69);
+    sinon.stub(productModels, "getProductById").resolves([{ id: 69, name: 'produto X' }]);
+
+    const result = await productServices.createProduct(1);
+
+    expect(result.type).to.be.equal('INVALID_VALUE');
+    expect(result.message).to.deep.equal('"name" length must be between 3 and 30 characters long');
+  });
+
   afterEach(function () {
     sinon.restore();
   });

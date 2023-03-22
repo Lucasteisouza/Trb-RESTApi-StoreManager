@@ -19,7 +19,20 @@ const getProductById = async (req, res) => {
   return res.status(200).json(product.message);
 };
 
+const createProduct = async (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).json({ message: '"name" is required' });
+  }
+  const product = await productServices.createProduct(name);
+  if (product.type) {
+    return res.status(errorMap.mapError(product.type)).json({ message: product.message });
+  }
+  return res.status(201).json(product.message);
+};
+
 module.exports = {
   getAll,
   getProductById,
+  createProduct,
 };
