@@ -58,7 +58,7 @@ describe('testa a camada services da rota products', () => {
     const result = await productServices.createProduct(1);
 
     expect(result.type).to.be.equal('INVALID_VALUE');
-    expect(result.message).to.deep.equal('"name" length must be between 3 and 30 characters long');
+    expect(result.message).to.deep.equal('"name" length must be at least 5 characters long');
   });
 
   afterEach(function () {
