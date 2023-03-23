@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const { productServices } = require('../../../src/services');
 const { productModels } = require("../../../src/models");
-const { productsMock, singleProductMock } = require("../product.models.mocks");
+const { productsMock, singleProductMock } = require("../../Mocks/product.mocks");
 
 describe('testa a camada services da rota products', () => {
   it('retorna todos os produtos', async () => {
