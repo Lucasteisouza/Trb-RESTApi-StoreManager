@@ -31,8 +31,34 @@ const createProduct = async (req, res) => {
   return res.status(201).json(product.message);
 };
 
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).json({ message: '"name" is required' });
+  }
+  const numericId = Number(id);
+  const product = await productServices.updateProduct(numericId, name);
+  if (product.type) {
+    return res.status(errorMap.mapError(product.type)).json({ message: product.message });
+  }
+  return res.status(200).json(product.message);
+};
+
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  const numericId = Number(id);
+  const product = await productServices.deleteProduct(numericId);
+  if (product.type) {
+    return res.status(errorMap.mapError(product.type)).json({ message: product.message });
+  }
+  return res.status(204).end();
+};
+
 module.exports = {
   getAll,
   getProductById,
   createProduct,
+  updateProduct,
+  deleteProduct,
 };

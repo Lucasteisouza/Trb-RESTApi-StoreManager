@@ -25,8 +25,34 @@ const createProduct = async (name) => {
   return { type: null, message: newProductObj };
 };
 
+const updateProduct = async (id, name) => {
+  const error = schema.validateId(id);
+  if (error.type) return error;
+
+  const error1 = schema.validateProductName(name);
+  if (error1.type) return error1;
+
+  const result = await productModels.updateProduct(id, name);
+  if (result.affectedRows === 0) return { type: 'NOT_FOUND', message: 'Product not found' };
+
+  const [updatedProductObj] = await productModels.getProductById(id);
+  return { type: null, message: updatedProductObj };
+};
+
+const deleteProduct = async (id) => {
+  const error = schema.validateId(id);
+  if (error.type) return error;
+
+  const result = await productModels.deleteProduct(id);
+  if (result.affectedRows === 0) return { type: 'NOT_FOUND', message: 'Product not found' };
+
+  return { type: null, message: result };
+};
+
 module.exports = {
   getAll,
   getProductById,
   createProduct,
+  updateProduct,
+  deleteProduct,
 };

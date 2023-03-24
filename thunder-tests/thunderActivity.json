@@ -116,16 +116,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3001/products/a",
-    "url": "http://localhost:3001/sales/1",
-    "method": "GET",
+    "url": "http://localhost:3001/products/1",
+    "method": "DELETE",
     "sortNum": 0,
     "created": "2023-03-21T23:21:55.788Z",
-    "modified": "2023-03-24T16:29:02.594Z",
+    "modified": "2023-03-24T16:54:34.116Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 3,\n    \"quantity\": 1\n  },\n  {\n    \"quantity\": 5,\n    \"productId\": 1\n  }\n]",
+      "raw": "{\n  \"name\": \"bumerangi do batima\"\n}",
       "form": []
     },
     "tests": []
