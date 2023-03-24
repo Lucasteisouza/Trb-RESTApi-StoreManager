@@ -22,6 +22,38 @@ const createSale = async (itensSold) => {
   return returnObj;
 };
 
+const getAllSales = async () => {
+  const [sales] = await connection.execute(
+    'SELECT * FROM StoreManager.sales',
+  );
+  const [salesProducts] = await connection.execute(
+    `SELECT * FROM StoreManager.sales_products
+    ORDER BY sale_id ASC, product_id ASC`,
+  );
+  const response = salesProducts.map((sale) => {
+    const { date } = sales.find((s) => s.id === sale.sale_id);
+    const { sale_id: saleId, product_id: productId, quantity } = sale;
+    return { saleId, productId, quantity, date };
+  });
+  return response;
+};
+
+const getSaleById = async (id) => {
+  const [sales] = await connection.execute('SELECT * FROM StoreManager.sales');
+  const [salesProducts] = await connection.execute(
+    'SELECT * FROM StoreManager.sales_products WHERE sale_id = ?',
+    [id],
+  );
+  const returnSale = salesProducts.map((sale) => {
+    const { date } = sales.find((s) => s.id === sale.sale_id);
+    const { product_id: productId, quantity } = sale;
+    return { productId, quantity, date };
+  });
+  return returnSale;
+};
+
 module.exports = {
   createSale,
+  getAllSales,
+  getSaleById,
 };
