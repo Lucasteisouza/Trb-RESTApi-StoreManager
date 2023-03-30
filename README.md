@@ -17,5 +17,5 @@ This project was developed in 3-4 days.
 ## How to run the tests
 
 1. Follow steps 1 and 2 above
-2. Access the container with `docker exec -it ${container_name}` 
+2. Access the container with `docker exec -it ${container_name} sh` 
 3. Once inside the container, run the tests with `npm run test:mocha`
