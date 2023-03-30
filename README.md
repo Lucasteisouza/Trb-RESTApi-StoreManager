@@ -1,13 +1,13 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Back-end management of a fictional store using MSC architecture 
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+This repo was created as part of my formation in the Back-end modulo at @Trybe.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Our main goal was to create a small application capable of handling user requests following the http protocols, and following the Model, Service, Control architecture paradigm. To achieve this, the library Express and mysql2 were used.
+
+This project was developed in 3-4 days.
+
+## How to run
+
+1. Clone this repository
+2. Run the .yaml file using `docker-compose up -d`
+3. Execute the requisition using any req simulator (such as ThunderClient, Insomnia or PostMan)
